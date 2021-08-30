@@ -5,60 +5,69 @@
 
 
 # нужен базовый инит
-class Animal:
+from time import sleep
 
-    # никто не пишет метод кемл кейсом, читай пеп8
-    def getInfo(self):
+
+class Animal:
+    def __init__(self, name, move):
+        self.move = move
+        self.name = name
+
+    def get_info(self):
         print("Имя:", self.name)
         print("Тип животного:", self.breed)
         print("Количество лап:", self.paws)
 
-    # никто не пишет метод кемл кейсом, читай пеп8
-    def getWaytomove(self):
-        print("Способ передвежения:", self.move)
-        # return self.move
+    def _get_move_mode(self) -> str:
+        return self.move
+
+    def get_move_mode(self):
+        print("Способ передвежения:", self._get_move_mode())
 
 
 class Cat(Animal):
     def __init__(self, name, breed="default cat", paws=4, move="ходьба"):
-        self.name = name
-        self.type = breed
+        self.breed = breed
         self.paws = paws
-        self.move = move
+        super().__init__(name=name, move=move)
+
+    def _get_move_mode(self) -> str:
+        for i in range(5):
+            print('im sleeping... Zzz')
+            sleep(1)
+        print('мяу')
+        return super()._get_move_mode()
 
 
 class Dog(Animal):
     def __init__(self, name, breed="default cat", paws=4, move="ходьба"):
-        self.name = name
-        self.type = breed
+        self.breed = breed
         self.paws = paws
-        self.move = move
+        super().__init__(name=name, move=move)
 
 
 class Fish(Animal):
-    def __init__(self, name, breed="default fish", fins=3, move="плавание"):
-        self.name = name
-        # у рыбы не должно быть породы
-        self.type = breed
+    def __init__(self, name, fins=3, move="плавание"):
         self.fins = fins
-        self.move = move
+        super().__init__(name=name, move=move)
 
-    # никто не пишет метод кемл кейсом, читай пеп8
-    def getInfo(self):
+    def get_info(self):
         print("Имя:", self.name)
-        print("Тип животного:", self.breed)
         print("Количество плавников:", self.fins)
 
 
 class Human(Animal):
     def __init__(self, name, hands=2, legs=2, move="ходьба"):
-        self.name = name
         self.hands = hands
         self.legs = legs
-        self.move = move
+        super().__init__(name=name, move=move)
 
-    # никто не пишет метод кемл кейсом, читай пеп8
-    def getInfo(self):
+    def get_info(self):
         print("Имя:", self.name)
         print("Количество рук:", self.hands)
         print("Количество ног:", self.legs)
+
+
+a = Cat('huy')
+a.get_info()
+a.get_move_mode()
