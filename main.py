@@ -22,7 +22,7 @@ class Animal:
         return self.move
 
     def get_move_mode(self):
-        print("Способ передвежения:", self._get_move_mode())
+        print("Способ передвижения:", self._get_move_mode())
 
 
 class Cat(Animal):
@@ -68,6 +68,6 @@ class Human(Animal):
         print("Количество ног:", self.legs)
 
 
-a = Cat('huy')
+a = Cat('kitty')
 a.get_info()
 a.get_move_mode()
